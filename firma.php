@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-echo '<pre>' . var_dump($_POST) . '</pre>';
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,11 +18,13 @@ echo '<pre>' . var_dump($_POST) . '</pre>';
     var x = "black",
         y = 2;
 
+
     function init() {
         canvas = document.getElementById('can');
         ctx = canvas.getContext("2d");
         w = canvas.width;
         h = canvas.height;
+
 
         canvas.addEventListener("mousemove", function(e) {
             findxy('move', e)
@@ -52,7 +50,7 @@ echo '<pre>' . var_dump($_POST) . '</pre>';
         ctx.closePath();
     }
 
-    function erase() {
+    function borrar() {
         var m = confirm("Want to clear");
         if (m) {
             ctx.clearRect(0, 0, w, h);
@@ -60,11 +58,9 @@ echo '<pre>' . var_dump($_POST) . '</pre>';
         }
     }
 
-    function save() {
-        document.getElementById("canvasimg").style.border = "2px solid";
+    function firmar() {
         var dataURL = canvas.toDataURL();
-        document.getElementById("canvasimg").src = dataURL;
-        document.getElementById("lafirma").value = dataURL;
+        document.getElementById("firma").value = dataURL;
     }
 
     function findxy(res, e) {
@@ -104,14 +100,13 @@ echo '<pre>' . var_dump($_POST) . '</pre>';
         <canvas id="can" width="300" height="100" style="border:2px solid;"></canvas>
         <br>
         <br>
-        <input type="submit" value="Firmar" id="btn" size="30" onclick="save()">
+        <input type="submit" value="Firmar" onclick="firmar()">
         <br>
         <br>
-        <input type="button" value="Boirrar" id="clr" size="23" onclick="erase()">
+        <input type="button" value="Borrar" onclick="borrar()">
         <br>
         <br>
-        <!-- <img id="canvasimg" name="canvas"> -->
-        <input id="lafirma" type="hidden" name="lafirma">
+        <input id="firma" type="hidden" name="firma">
     </form>
 
 </body>
